@@ -1,37 +1,29 @@
-# CashFlow Alpha – MVP
+# CashFlow Alpha V2
 
-A local Streamlit research application for long-term Indian equity research.
+Automatic single-company research for Indian equities using Yahoo Finance data through yfinance.
 
-## Features
-- Fundamental quality scoring from annual financial statement CSVs
-- Cash tax / tax expense, CFO / EBITDA, Cash ROCE, sales growth, receivables growth and net-debt checks
-- Daily price CSV import and basic 50DMA / 200DMA / RSI analysis
-- Research signal: BUY-review / WAIT / SELL-review
-- Stock screener, SQLite watchlist and CSV export
+## Deploy update
+Replace the files in your existing GitHub repository with the contents of this folder, preserving the folder structure. Commit to the same branch connected to Streamlit Community Cloud. Streamlit will rebuild when requirements.txt changes.
 
-## Run on Windows
-1. Install Python 3.10 or newer.
-2. Extract this ZIP into a separate folder, for example `C:\CashFlowAlpha`.
-3. Open Command Prompt in that folder.
-4. Run:
-
-```bat
-py -m venv .venv
-.venv\Scripts\activate
+## Run locally
+```bash
 pip install -r requirements.txt
 streamlit run app.py
 ```
 
-The app opens in your browser at the local address shown by Streamlit.
+## How to use
+1. Open Company research.
+2. Enter a company name or ticker such as TCS, INFY, HDFCBANK, RELIANCE.
+3. Select NSE or BSE.
+4. Search company, select a match, then Analyse selected company.
+5. Review coverage, missing fields, annual statements, price trend and research signal.
 
-## Data format
-Financial data: one row per company per financial year. Required columns are listed in the app's Data guide. Use consistent units (for example, ₹ crore) and consistent consolidated or standalone reporting.
-Daily prices: `Symbol,Date,Close,Volume`. Dates should be YYYY-MM-DD and prices should be adjusted for splits and bonus issues.
-
-## Important limitations
-- Sample data is illustrative only, not real market data.
-- The current MVP does not fetch live NSE/BSE financial statements.
-- Annual financial ratios require correctly sourced and comparable statements.
-- A single-year score is incomplete; multi-year trend, peer comparisons, management quality, auditor notes, contingent liabilities and valuation history still need review.
-- Banks, NBFCs, insurers and other financial businesses need a separate scoring model. Do not apply industrial-company EBITDA/ROCE thresholds to them.
-- Signals are decision-support research, not personalised financial advice or automatic orders.
+## Data and limitations
+- Data source: Yahoo Finance accessed via yfinance. This is an unofficial interface, not an exchange-certified or guaranteed feed.
+- Statement coverage varies by company, field and year. Missing values are shown as unavailable; they are not guessed.
+- The app does not guarantee 10 years of financials.
+- Cash tax paid and Cash ROCE may not be available in Yahoo data. Verify audited filings and calculate using a disclosed formula.
+- Current scoring is a preliminary industrial-company screen, not suitable for banks/NBFCs/insurers. A separate financial-sector model is required.
+- Valuation and governance are not fully automated; manual review is required.
+- BUY–REVIEW / WAIT / SELL–THESIS REVIEW are research labels, not personalised financial advice or trade execution.
+- Prices may be delayed, adjusted, incomplete or unavailable. Verify before acting.
